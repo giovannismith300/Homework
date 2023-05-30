@@ -1,0 +1,43 @@
+.container-fluid{
+        background-color: black;
+}
+
+#header{
+        font-size: 50px;
+        font-weight: bold;
+        font-family: 'Rye', cursive;
+}
+img{
+    height: 300px;
+}
+#imageTab{
+    background: linear-gradient(45deg, violet, black);
+}
+
+#third-Box{
+    font-family: 'Tenali Ramakrishna', sans-serif;
+}
+#text-area{
+    background-color: black;
+}
+hr{
+    width: 55%;
+    height: auto;
+    background-color: black;
+}
+p{
+    font-size: 20px;
+    font-family: 'Tenali Ramakrishna', sans-serif;
+    width: 90%;
+
+}
+
+button{
+    width: 75%;
+    font-family: 'Tenali Ramakrishna', sans-serif;
+    font-size: 60px;
+}
+
+h4{
+    font-family: "Times New Roman";
+}
