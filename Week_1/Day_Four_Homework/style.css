@@ -1,0 +1,21 @@
+.card{
+    border: 5px solid black;
+}
+
+#button{
+    width: 50%;
+    margin-left: auto;
+    margin-right: auto;
+    border: 3px black solid;
+    transition: 1s;
+}
+
+#button:hover{
+    color: rgba(18, 17, 17, 0.349);
+    transition: 0.7s;
+}
+form{
+    width: 75%;
+    margin-left: auto;
+    margin-right: auto;
+}
