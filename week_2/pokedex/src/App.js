@@ -6,14 +6,14 @@ import Pokemon from './models/Pokemon';
 import {useState} from 'react'
 
 function App() {
-  let url = "https://pokeapi.co/api/v2/"
+  let url = "https://pokeapi.co/api/v2/pokemon?limit=100000&offset=0"
   const [pokeNames, setPokeNames] = useState([])
   const [pokemon, setPokemon] = useState([])
 
 
 
   async function fetchPokemon(){
-    const res = await fetch(url + "pokemon", {
+    const res = await fetch(url , {
       method: "GET",
       header: {"Content-Type": "application/json"}
 
