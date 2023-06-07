@@ -1,6 +1,9 @@
 import "bootstrap/dist/css/bootstrap.min.css"
 import React, {useState, useEffect} from 'react';
 import Book from "./Book";
+import BookServices from './services/bookservices'
+import 'bootstrap-icons/font/bootstrap-icons.css'; 
+
 
 
 
@@ -10,9 +13,9 @@ function BookForm(props){
     const[title, setTitle] = useState("")
     const[author, setAuthor] = useState("")
     const[isbn, setISBN] = useState("")
+    const button = <button className="btn btn-outline-primary btn-lg btn-block"> {props.bookToEdit ? "Update" : "Add Book"}</button>
 
-
-    function formSubmit(e){
+    async function formSubmit(e){
         e.preventDefault()
 
         const book = new Book(title, author, isbn)
@@ -25,7 +28,10 @@ function BookForm(props){
         setAuthor('')
         setISBN('')
 
-
+        
+        await BookServices.addBook(book)
+        
+        
 
     }
 
@@ -38,7 +44,8 @@ function BookForm(props){
         }
     }, [props.bookToEdit]);
 
-
+    
+    
 
     return (
         <>
@@ -65,7 +72,7 @@ function BookForm(props){
                 </div>
 
                 <div className="d-flex justify-content-center">
-                    <button className="btn btn-outline-primary btn-lg btn-block"> {props.bookToEdit ? "Update" : "Add Book"}</button>
+                    {button}{/* <button className="btn btn-outline-primary btn-lg btn-block"> {props.bookToEdit ? "Update" : "Add Book"}</button> */}
                 </div>
          </form>
         </>

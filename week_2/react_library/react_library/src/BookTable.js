@@ -4,6 +4,7 @@ import App from "./App";
 
 function BookTable(props){
     //console.log(props.books)
+    
     const bookList = props.books.map((book) => {
         return <tr key ={book.isbn} >
             <td>{book.title}</td>
@@ -12,7 +13,11 @@ function BookTable(props){
             <td>
                 <button onClick = {() => {
                     props.onDeleteButtonClick(book)
-                    }} className="btn btn-outline-danger me-1">DELETE</button>
+                    }} className="btn btn-outline-danger me-1">
+                        
+                        <i className="bi bi-trash"></i>
+
+                    </button>
 
                 <button onClick = {() => props.onEditButtonClick(book)}
                 className="btn btn-outline-warning ms-1">EDIT</button>
