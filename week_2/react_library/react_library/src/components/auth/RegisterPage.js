@@ -15,7 +15,7 @@ export default function RegisterPage() {
     try{
       const userCred = await createUserWithEmailAndPassword(auth, email, password)
       console.log(userCred)
-      navigate('/library')
+      navigate('/')
     }catch(err){
       alert(err)
     }
