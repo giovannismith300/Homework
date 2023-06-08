@@ -1,0 +1,32 @@
+#library{
+    font-weight: bold;
+    color: white;
+}
+#express{
+    font-weight: bold;
+    background-color: white;
+    border-radius: 10px;
+    padding: 2px;
+    color: black;
+    border: 1px black solid;
+
+
+}
+
+#myNavBar{
+    margin-top: 15px;
+}
+
+.superButton{
+    box-shadow: 0 9px #999;
+
+}
+
+.superButton:hover{
+    font-size: 20px;
+    transition: .3s;
+}
+.superButton:active{
+    box-shadow: 0 5px #999;
+    transform: translatey(4px)
+}

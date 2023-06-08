@@ -1,79 +1,45 @@
 import React, {useState, useEffect} from 'react';
 
 import './App.css';
-import BookForm from './BookForm';
-import BookTable from './BookTable';
-import BookServices from './services/bookservices'
+//import BookForm from './components/books/BookForm';
+//import BookTable from './BookTable';
+//import BookServices from './services/bookservices'
+import Library from './components/books/Library'
 
 import "bootstrap/dist/css/bootstrap.min.css"
 
 
+import { BrowserRouter, Routes, Route } from 'react-router-dom';
 
-function App() {
+import Navbar from './components/common/Navbar'
+import LoginPage from './components/auth/LoginPage'
+import RegisterPage from './components/auth/RegisterPage'
 
-  const [books, setBooks] = useState([])
-  const [bookToEdit, setBookToEdit] = useState(null)
+import { onAuthStateChanged } from 'firebase/auth';
 
-  useEffect(() => {
-    if(!books.length){
-       onInitialLoad()
-      
-    }
-    
-  }, [])
+import {auth} from './firebase/firebase'
 
-  async function onInitialLoad(){
-    try{
-      const bookArray = await BookServices.fetchBooks()
-      setBooks(bookArray)
-    } catch(err){
-      console.log(err)
-    }
-    
-  }
-
-  function newBook(book){
-    setBookToEdit(null)
 
 
 
-    setBooks(books => [...books, book])
-    
-    
+function App() {
+const [user, setUser] = useState(null)
 
-  }
-  async function onDeleteButtonClick(book){
-    setBooks(
-      books.filter((x) =>  x.isbn !== book.isbn)
-      
-    )
-try{
-    await BookServices.deleteBook(book)
-} catch (err){
-  console.log(err)
-}
-    
-  }
-
-  function onEditButtonClick(book){
-
-    BookServices.deleteBook(book)
-    setBookToEdit(book)
-    
-    setBooks(books.filter((x) =>  x.isbn !== book.isbn))
-
-  }
+useEffect(() => {
+  onAuthStateChanged(auth, (user) => {
+    setUser(user)
+  })
+}, [])
+  
   return (
-    <div className="App">
-      <h1 className= "text-center"> Library!</h1>
-
-      <BookForm newBook={newBook} bookToEdit = {bookToEdit}></BookForm>
-      <BookTable books = {books}
-      onDeleteButtonClick= {onDeleteButtonClick}
-      onEditButtonClick = {onEditButtonClick}></BookTable>
-
-
-    </div>
+    <BrowserRouter>
+    <Navbar user= {user}/>
+    <Routes>
+      <Route path="/" element={<Library/>}></Route>
+      <Route path="/login" element={<LoginPage/>}></Route>
+      <Route path="/register" element={<RegisterPage/>}></Route>
+    </Routes>
+    </BrowserRouter>
   );
 }
 

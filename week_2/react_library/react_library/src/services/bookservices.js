@@ -1,6 +1,6 @@
 import {db} from '../firebase/firebase'
 import {doc, collection, addDoc, setDoc, deleteDoc, query, getDocs} from 'firebase/firestore'
-import Book from '../Book'
+import Book from '../models/Book'
 
 class BookServices{
     constructor(){

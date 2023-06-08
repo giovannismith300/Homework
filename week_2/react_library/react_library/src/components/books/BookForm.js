@@ -1,7 +1,7 @@
 import "bootstrap/dist/css/bootstrap.min.css"
 import React, {useState, useEffect} from 'react';
-import Book from "./Book";
-import BookServices from './services/bookservices'
+import Book from "../../models/Book";
+import BookServices from '../../services/bookservices'
 import 'bootstrap-icons/font/bootstrap-icons.css'; 
 
 
