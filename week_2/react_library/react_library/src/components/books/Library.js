@@ -6,6 +6,7 @@ import BookTable from './BookTable';
 import BookServices from '../../services/bookservices'
 
 import "bootstrap/dist/css/bootstrap.min.css"
+import {motion} from 'framer-motion'
 
 export default function Library() {
     const [books, setBooks] = useState([])
@@ -62,7 +63,15 @@ try{
   }
   return (
     <div className="App">
-      <h1 className= "text-center"> Library!</h1>
+      <div className="d-flex justify-content-center">
+        <h1 className= "text-center"> Welcome To The Library!</h1>
+        <motion.i class="bi bi-truck fa-2x" id="truck"
+        initial= {{opacity: 1}}
+        animate={{x: [0, 800], opacity: 0}}
+        transition={{
+          duration: 1.5
+        }}></motion.i> 
+      </div>
 
       <BookForm newBook={newBook} bookToEdit = {bookToEdit}></BookForm>
       <BookTable books = {books}

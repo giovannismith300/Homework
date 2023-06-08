@@ -2,10 +2,14 @@ import React from 'react'
 import {signOut} from 'firebase/auth'
 import {Link} from 'react-router-dom'
 import {auth} from "../../firebase/firebase"
+import {useNavigate} from 'react-router-dom'
+
 
 export default function Navbar(props) {
+    const navigate = useNavigate()
 async function onLogoutClicked(){
     await signOut(auth)
+    navigate("/")
 }
 
 
@@ -29,19 +33,24 @@ async function onLogoutClicked(){
 
             <div className="collapse navbar-collapse" id="navbarSupportedContent">
                 <ul className="navbar-nav me-auto mb-2 mb-lg-0">
-                    <li className="nav-item">
-                        <Link className="nav-link active" to="/"> Home </Link>
-                    </li>
                     {props.user ? (
+                        <>
+                    <li className="nav-item">
+                        <Link className="nav-link active" to="/library"> Library </Link>
+                    </li>
                         <li className="nav-item">
                             <div className="btn btn-primary" onClick={onLogoutClicked}>
                                 Logout
                             </div>
                         </li>
+                        </>
                     ) : (
                         <>
+                        <li className="nav-item">
+                            <Link className="nav-link active disabled" to="/library"> Library </Link>
+                        </li>
                         <li>
-                            <Link className = "nav-link active" to ="/login">
+                            <Link className = "nav-link active" to ="/">
                                 Log In
                             </Link>
                         </li>

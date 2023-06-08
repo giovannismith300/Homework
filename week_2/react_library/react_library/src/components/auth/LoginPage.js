@@ -15,7 +15,7 @@ export default function LoginPage() {
     try{
       const userCred = await signInWithEmailAndPassword(auth, email, password)
       console.log(userCred)
-      navigate('/')
+      navigate('/library')
     }catch(err){
       alert(err)
     }
@@ -36,7 +36,7 @@ export default function LoginPage() {
     }}
     value = {email}
     ></input>
-    <small id="emailHelp" class="form-text text-muted">We'll never share your email with anyone else.</small>
+    
   </div>
   <div class="form-group mb-2">
     <label for="exampleInputPassword1">Password</label>

@@ -35,8 +35,8 @@ useEffect(() => {
     <BrowserRouter>
     <Navbar user= {user}/>
     <Routes>
-      <Route path="/" element={<Library/>}></Route>
-      <Route path="/login" element={<LoginPage/>}></Route>
+      <Route path="/" element={<LoginPage/>}></Route>
+      <Route path="/library" element={<Library/>}></Route>
       <Route path="/register" element={<RegisterPage/>}></Route>
     </Routes>
     </BrowserRouter>

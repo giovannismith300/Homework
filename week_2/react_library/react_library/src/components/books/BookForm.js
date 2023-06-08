@@ -52,27 +52,27 @@ function BookForm(props){
          <form onSubmit = {formSubmit}>
                 <div className="mb-3">
                     <label className = "form-label">Title</label>
-                    <input id="title-input" type="text"  placeholder="Enter Your Movie Here!" className="form-control "
+                    <input id="title-input" type="text"  placeholder="Enter Your Title Here!" className="form-control "
                     onChange = {(e) => setTitle(e.target.value)}
                     value = {title}/>
                 </div>
 
                 <div className="mb-3">
                     <label className = "form-label">Author</label>
-                    <input id="author-input" type="text" className="form-control " placeholder="Enter Your Movie Here!"
+                    <input id="author-input" type="text" className="form-control " placeholder="Enter Your Author Here!"
                     onChange = {(e) => setAuthor(e.target.value)}
                     value = {author}/>
                 </div>
 
                 <div className="mb-3">
                     <label className ="form-label">IBSN</label>
-                    <input id="isbn-input" type="text"  placeholder="Enter Your Movie Here!" className="form-control"
+                    <input id="isbn-input" type="text"  placeholder="Enter Your ISBN Here!" className="form-control"
                     onChange = {(e) => setISBN(e.target.value)} 
                     value = {isbn}/>
                 </div>
 
                 <div className="d-flex justify-content-center">
-                    {button}{/* <button className="btn btn-outline-primary btn-lg btn-block"> {props.bookToEdit ? "Update" : "Add Book"}</button> */}
+                    {button}
                 </div>
          </form>
         </>
