@@ -17,9 +17,10 @@ class BookServices{
 
         querySnapshot.forEach((doc)=>{
             const data = doc.data()
-            const book = new Book (data.title, data.author, data.isbn)
+            const book = new Book (data.title, data.author, data.isbn, data.userId)
 
             books.push(book)
+            
         })
         
         return books
@@ -38,7 +39,9 @@ class BookServices{
         await setDoc(doc(db, this.collection, book.isbn), {
             title: book.title,
             author: book.author,
-            isbn: book.isbn
+            isbn: book.isbn,
+            userId: book.userId
+            
         })
         
         

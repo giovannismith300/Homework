@@ -17,9 +17,9 @@ function BookForm(props){
 
     async function formSubmit(e){
         e.preventDefault()
-
-        const book = new Book(title, author, isbn)
-        //console.log(book)
+        const book = new Book(title, author, isbn, props.user.uid)
+        
+        
         props.newBook(book)
         
         

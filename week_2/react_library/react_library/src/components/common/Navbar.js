@@ -8,8 +8,9 @@ import {useNavigate} from 'react-router-dom'
 export default function Navbar(props) {
     const navigate = useNavigate()
 async function onLogoutClicked(){
-    await signOut(auth)
     navigate("/")
+    await signOut(auth)
+    
 }
 
 

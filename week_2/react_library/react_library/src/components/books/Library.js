@@ -8,10 +8,12 @@ import BookServices from '../../services/bookservices'
 import "bootstrap/dist/css/bootstrap.min.css"
 import {motion} from 'framer-motion'
 
-export default function Library() {
+export default function Library(props) {
     const [books, setBooks] = useState([])
   const [bookToEdit, setBookToEdit] = useState(null)
-
+  const [loading, setLoading] = useState(false)
+  
+ 
   useEffect(() => {
     if(!books.length){
        onInitialLoad()
@@ -21,17 +23,20 @@ export default function Library() {
   }, [])
 
   async function onInitialLoad(){
+    setLoading(true)
     try{
       const bookArray = await BookServices.fetchBooks()
-      setBooks(bookArray)
+      setBooks(bookArray.filter((book) => book.userId === props.user.uid ))
     } catch(err){
       console.log(err)
     }
-    
+    setLoading(false)
   }
 
   function newBook(book){
+    
     setBookToEdit(null)
+
 
 
 
@@ -65,7 +70,7 @@ try{
     <div className="App">
       <div className="d-flex justify-content-center">
         <h1 className= "text-center"> Welcome To The Library!</h1>
-        <motion.i class="bi bi-truck fa-2x" id="truck"
+        <motion.i className="bi bi-truck fa-2x" id="truck"
         initial= {{opacity: 1}}
         animate={{x: [0, 800], opacity: 0}}
         transition={{
@@ -73,10 +78,11 @@ try{
         }}></motion.i> 
       </div>
 
-      <BookForm newBook={newBook} bookToEdit = {bookToEdit}></BookForm>
+      <BookForm user = {props.user} newBook={newBook} bookToEdit = {bookToEdit}></BookForm>
       <BookTable books = {books}
       onDeleteButtonClick= {onDeleteButtonClick}
-      onEditButtonClick = {onEditButtonClick}></BookTable>
+      onEditButtonClick = {onEditButtonClick}
+      loading = {loading}></BookTable>
 
 
     </div>
