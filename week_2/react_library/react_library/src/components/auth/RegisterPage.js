@@ -2,23 +2,27 @@ import React, {useState} from 'react'
 import { createUserWithEmailAndPassword } from 'firebase/auth'
 import {useNavigate} from 'react-router-dom'
 import {auth} from "../../firebase/firebase"
+import Spinner from '../common/Spinner'
 
 export default function RegisterPage() {
   const navigate = useNavigate()
   const [email, setEmail] = useState(null)
   const [password, setPassword] = useState(null)
+  const [loading, setLoading] = useState(false)
 
   async function onFormSubmit(e){
     e.preventDefault()
     console.log(email)
     console.log(password)
     try{
+      setLoading(true)
       const userCred = await createUserWithEmailAndPassword(auth, email, password)
       console.log(userCred)
       navigate('/')
     }catch(err){
       alert(err)
     }
+    setLoading(false)
   }
   return (
     <div className="container my-5">
@@ -47,7 +51,8 @@ export default function RegisterPage() {
   </div>
 
   <div className=" d-flex justify-content-end">
-    <button type="submit" class="btn btn-primary mt-2 d-flex justify-content-end superButton">Register</button>
+  <button type="submit" class="btn btn-primary mt-2 d-flex justify-content-end superButton"> {loading ? (<Spinner variant="light"></Spinner>) : ("Register")}</button>
+
   </div>
 </form>
 

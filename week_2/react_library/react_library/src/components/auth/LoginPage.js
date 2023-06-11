@@ -2,24 +2,27 @@ import React, {useState} from 'react'
 import { useNavigate } from 'react-router-dom'
 import {signInWithEmailAndPassword} from 'firebase/auth'
 import {auth} from '../../firebase/firebase'
+import Spinner from "../common/Spinner"
 
 export default function LoginPage() {
   const navigate = useNavigate()
   const [email, setEmail] = useState(null)
   const [password, setPassword] = useState(null)
+  const [loading, setLoading] = useState(false)
 
   async function onFormSubmit(e){
     e.preventDefault()
     console.log(email)
     console.log(password)
     try{
+      setLoading(true)
       const userCred = await signInWithEmailAndPassword(auth, email, password)
       console.log(userCred)
       navigate('/library')
     }catch(err){
       alert(err)
     }
-
+    setLoading(false)
 
   }
   return (
@@ -49,7 +52,7 @@ export default function LoginPage() {
   </div>
 
   <div className=" d-flex justify-content-end">
-    <button type="submit" class="btn btn-primary mt-2 d-flex justify-content-end superButton">Log In</button>
+    <button type="submit" class="btn btn-primary mt-2 d-flex justify-content-end superButton"> {loading ? (<Spinner variant="light"></Spinner>) : ("Log In")}</button>
   </div>
 </form>
 
